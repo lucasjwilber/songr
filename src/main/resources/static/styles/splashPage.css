@@ -3,6 +3,13 @@ body {
     max-width: 960px;
     margin: auto;
 }
-h1, p {
+h1 {
+    font-family: 'Bangers', cursive;
     text-align: center;
+    font-size: 3em;
+}
+p {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 1.5em;
 }

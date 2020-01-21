@@ -28,9 +28,9 @@ public class SongrController {
     @GetMapping("/albums")
     public String albums(Model m) {
 
-        Album album1 = new Album("Ratch City", "roach lord", 69, 420, "images/ratch.jpg");
-        Album album2 = new Album("Ratch City", "roach lord", 69, 420, "images/ratch.jpg");
-        Album album3 = new Album("Ratch City", "roach lord", 69, 420, "images/ratch.jpg");
+        Album album1 = new Album("NOW! 80s", "Multiple Artists", 100, 600, "NOW80s.jpg");
+        Album album2 = new Album("Object object", "JavaScrap", 8, 555, "JS.png");
+        Album album3 = new Album("Ratch City", "Roach Lord", 69, 420, "ratch.jpg");
 
         Album[] albums = new Album[]{album1, album2, album3};
 

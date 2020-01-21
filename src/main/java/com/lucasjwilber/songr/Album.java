@@ -12,6 +12,6 @@ public class Album {
         this.artist = artist;
         this.songCount = songCount;
         this.length = length;
-        this.imageURL = imageURL;
+        this.imageURL = "/images/" + imageURL;
     }
 }

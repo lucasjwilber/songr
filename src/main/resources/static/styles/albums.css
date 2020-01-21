@@ -5,8 +5,11 @@ h1 {
 .album {
     max-width: 400px;
     margin: auto;
-    background-color: salmon;
+    background-color: lightgray;
     margin-bottom: 3em;
+    padding: 1em;
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    font-family: 'Roboto', sans-serif;
 }
     .album img {
         width: 80%;
@@ -16,4 +19,7 @@ h1 {
     .album h4,
     .album p {
         text-align: center;
+    }
+    .album h2 {
+        font-family: 'Bangers', cursive;
     }

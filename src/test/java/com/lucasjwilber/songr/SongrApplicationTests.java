@@ -18,5 +18,5 @@ class SongrApplicationTests {
 		assertEquals(300, testAlbum.length);
 		assertEquals("realURL.com", testAlbum.imageURL);
 	}
-	
+
 }
