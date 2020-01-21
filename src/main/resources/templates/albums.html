@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="styles/albums.css" />
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Albums:</h1>
+
+    <div id="albumsContainer" th:each="album: ${albums}" >
+        <div class="album">
+            <h2 th:text="${album.title}"></h2>
+            <img th:src="${album.imageURL}" />
+            <h4>by <span th:text="${album.artist}"></span></h4>
+            <p><span th:text="${album.songCount}"></span> songs!</p>
+            <p><span th:text="${album.length}"></span> minutes of audio!</p>
+        </div>
+    </div>
+
+</body>
+</html>
