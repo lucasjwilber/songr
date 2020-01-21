@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SongrController {
 
+    @GetMapping("/")
+    public String splashPage() {
+        return "splashPage";
+    }
+
     @GetMapping("/hello")
     public String helloWorld() {
         return "helloWorld";
@@ -18,5 +23,19 @@ public class SongrController {
     public String capitalize(Model m, @PathVariable String words) {
         m.addAttribute("words", words.toUpperCase());
         return "capitalize";
+    }
+
+    @GetMapping("/albums")
+    public String albums(Model m) {
+
+        Album album1 = new Album("Ratch City", "roach lord", 69, 420, "images/ratch.jpg");
+        Album album2 = new Album("Ratch City", "roach lord", 69, 420, "images/ratch.jpg");
+        Album album3 = new Album("Ratch City", "roach lord", 69, 420, "images/ratch.jpg");
+
+        Album[] albums = new Album[]{album1, album2, album3};
+
+        m.addAttribute("albums", albums);
+
+        return "albums";
     }
 }

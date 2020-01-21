@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+}
+
+.album {
+    max-width: 400px;
+    margin: auto;
+    background-color: salmon;
+    margin-bottom: 3em;
+}
+    .album img {
+        width: 80%;
+        margin-left: 10%;
+    }
+    .album h2,
+    .album h4,
+    .album p {
+        text-align: center;
+    }
