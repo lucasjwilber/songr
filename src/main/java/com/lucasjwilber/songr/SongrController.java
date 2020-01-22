@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
 import java.util.List;
 
 
@@ -14,7 +13,6 @@ public class SongrController {
 
     @Autowired
     SongrRepository repo;
-
 
     @GetMapping("/")
     public String splashPage() {
@@ -34,15 +32,8 @@ public class SongrController {
 
     @GetMapping("/albums")
     public String albums(Model m) {
-//
-//        Album album1 = new Album("NOW! 80s", "Multiple Artists", 100, 600, "NOW80s.jpg");
-//        Album album2 = new Album("Object object", "JavaScrap", 8, 555, "JS.png");
-//        Album album3 = new Album("Ratch City", "Roach Lord", 69, 420, "ratch.jpg");
-//
         List<Album> albums = repo.findAll();
-
         m.addAttribute("albums", albums);
-
         return "albums";
     }
 
@@ -50,5 +41,16 @@ public class SongrController {
     public RedirectView addAlbum(Album newAlbum) {
         repo.save(newAlbum);
         return new RedirectView("/albums");
+    }
+
+    @DeleteMapping("/albums/{albumId}")
+    public String deleteAlbum(@PathVariable Long albumId) {
+        repo.deleteById(albumId);
+        return "/albums";
+    }
+
+    @GetMapping("/*")
+    public String error() {
+        return "error";
     }
 }

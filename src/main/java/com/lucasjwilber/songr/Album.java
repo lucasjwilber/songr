@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Album {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    long id;
+    public long id;
 
     public String title;
     public String artist;
