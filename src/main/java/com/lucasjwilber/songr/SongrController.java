@@ -3,11 +3,11 @@ package com.lucasjwilber.songr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
+
 
 @Controller
 public class SongrController {
@@ -34,12 +34,12 @@ public class SongrController {
 
     @GetMapping("/albums")
     public String albums(Model m) {
-
-        Album album1 = new Album("NOW! 80s", "Multiple Artists", 100, 600, "NOW80s.jpg");
-        Album album2 = new Album("Object object", "JavaScrap", 8, 555, "JS.png");
-        Album album3 = new Album("Ratch City", "Roach Lord", 69, 420, "ratch.jpg");
-
-        Album[] albums = new Album[]{album1, album2, album3};
+//
+//        Album album1 = new Album("NOW! 80s", "Multiple Artists", 100, 600, "NOW80s.jpg");
+//        Album album2 = new Album("Object object", "JavaScrap", 8, 555, "JS.png");
+//        Album album3 = new Album("Ratch City", "Roach Lord", 69, 420, "ratch.jpg");
+//
+        List<Album> albums = repo.findAll();
 
         m.addAttribute("albums", albums);
 
@@ -47,9 +47,8 @@ public class SongrController {
     }
 
     @PostMapping("/albums")
-    public RedirectView addAlbum() {
-        System.out.println("addAlbum() entered");
-        repo.save(new Album());
+    public RedirectView addAlbum(Album newAlbum) {
+        repo.save(newAlbum);
         return new RedirectView("/albums");
     }
 }
