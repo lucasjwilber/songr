@@ -1,19 +1,14 @@
-body {
-    background-color: lightblue;
-    max-width: 960px;
-    margin: auto;
-}
-h1 {
-    font-family: 'Bangers', cursive;
-    text-align: center;
-    font-size: 3em;
-}
+
 img {
     width: 60%;
+    margin-top: 2em;
     margin-left: 20%;
 }
 p {
     font-family: 'Roboto', sans-serif;
     text-align: center;
     font-size: 1.5em;
+}
+#homeLink {
+    color: orange;
 }

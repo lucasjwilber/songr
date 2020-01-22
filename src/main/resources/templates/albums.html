@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="styles/base.css" />
     <link rel="stylesheet" type="text/css" href="styles/albums.css" />
     <link href="https://fonts.googleapis.com/css?family=Bangers|Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Albums:</h1>
+    <div th:replace="fragments :: header"></div>
+
+    <button id="addAlbumButton" onClick="showForm()">Add an Album</button>
 
     <div id="albumsContainer" th:each="album: ${albums}" >
         <div class="album">
@@ -16,8 +19,35 @@
             <h4>by <span th:text="${album.artist}"></span></h4>
             <p><span th:text="${album.songCount}"></span> songs!</p>
             <p><span th:text="${album.length}"></span> minutes of audio!</p>
+
+            <form th:action="@{/albums/${album.id}}" method="delete">
+                <input type="submit" name="deleteAlbum" value="Delete" />
+            </form>
         </div>
     </div>
+
+
+    <div id="formBackground" class="hidden">
+        <div class="whiteBG">
+            <form action="/albums" method="post">
+                <input name="title" placeholder="Album Title" />
+                <input name="artist" placeholder="Artist" />
+                <input type="number" name="songCount" placeholder="# of songs" />
+                <input type="number" name="length" placeholder="Album length (minutes)" />
+                <input type="url" name="imageURL" placeholder="Album cover URL" />
+                <input type="submit" text="Submit" onClick="hideForm()" />
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function hideForm() {
+            document.getElementById("formBackground").style.visibility = "hidden";
+        }
+        function showForm() {
+            document.getElementById("formBackground").style.visibility = "visible";
+        }
+    </script>
 
 </body>
 </html>
