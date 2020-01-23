@@ -64,16 +64,23 @@ public class SongrController {
         Album album = (Album) albumRepo.getOne(id);
         m.addAttribute("album", album);
         m.addAttribute("id", id);
-        List<Song> songList = songRepo.findAll();
-        m.addAttribute("songs", songList);
+
+        System.out.println("//////\n////////////\n////////////\n");
+
+        System.out.println(album.songs);
+
+        m.addAttribute("songs", album.songs);
         return "/album";
     }
 
     @PostMapping("/addSong/{id}")
     public RedirectView addSong(@PathVariable("id") Long id, Song newSong) {
         newSong.album = albumRepo.getOne(id);
-
         songRepo.save(newSong);
+
+//        Album album = albumRepo.getOne(id);
+//        album.songs.add(newSong);
+//        albumRepo.save(album);
 
         return new RedirectView("/albums");
     }
