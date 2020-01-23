@@ -12,7 +12,10 @@ import java.util.List;
 public class SongrController {
 
     @Autowired
-    SongrRepository repo;
+    AlbumRepository albumRepo;
+
+    @Autowired
+    SongRepository songRepo;
 
     @GetMapping("/")
     public String splashPage() {
@@ -27,30 +30,63 @@ public class SongrController {
     @GetMapping("/capitalize/{words}")
     public String capitalize(Model m, @PathVariable String words) {
         m.addAttribute("words", words.toUpperCase());
-        return "capitalize";
+        return "/capitalize";
     }
 
     @GetMapping("/albums")
     public String albums(Model m) {
-        List<Album> albums = repo.findAll();
+        List<Album> albums = albumRepo.findAll();
         m.addAttribute("albums", albums);
-        return "albums";
+        return "/albums";
     }
 
     @PostMapping("/albums")
     public RedirectView addAlbum(Album newAlbum) {
-        repo.save(newAlbum);
+        albumRepo.save(newAlbum);
         return new RedirectView("/albums");
     }
 
     @DeleteMapping("/albums/{albumId}")
-    public String deleteAlbum(@PathVariable Long albumId) {
-        repo.deleteById(albumId);
-        return "/albums";
+    public RedirectView deleteAlbum(@PathVariable Long albumId) {
+        albumRepo.deleteById(albumId);
+        return new RedirectView("/");
     }
 
-    @GetMapping("/*")
-    public String error() {
-        return "error";
+    @GetMapping("/songs")
+    public String getAllSongs(Model m, Song song) {
+        List<Song> songs = songRepo.findAll();
+        m.addAttribute("songs", songs);
+        return "/songs";
     }
+
+    @GetMapping("/album/{id}")
+    public String viewAlbum(@PathVariable Long id, Model m) {
+        Album album = (Album) albumRepo.getOne(id);
+        m.addAttribute("album", album);
+        m.addAttribute("id", id);
+        List<Song> songList = songRepo.findAll();
+        m.addAttribute("songs", songList);
+        return "/album";
+    }
+
+    @PostMapping("/addSong/{id}")
+    public RedirectView addSong(@PathVariable("id") Long id, Song newSong) {
+        newSong.album = albumRepo.getOne(id);
+
+        songRepo.save(newSong);
+
+        return new RedirectView("/albums");
+    }
+//
+//    @PostMapping("/songs/new")
+//    public RedirectView newSong(Song song) {
+//        List<Song> songs = songRepo.findAll();
+//        songs.add(song);
+//        songRepo.saveAll(songs);
+//
+//        //refresh page
+//        return new RedirectView("/songs");
+//
+//    }
+
 }

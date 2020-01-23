@@ -1,15 +1,16 @@
 package com.lucasjwilber.songr;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Album {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     public long id;
+
+    @OneToMany(mappedBy = "album")
+    public List<Song> songs;
 
     public String title;
     public String artist;
@@ -21,7 +22,6 @@ public class Album {
     public Album() {};
 
     public Album(String title, String artist, int songCount, int length, String imageURL) {
-
         this.title = title;
         this.artist = artist;
         this.songCount = songCount;
