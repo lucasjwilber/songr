@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="styles/base.css" />
+</head>
+<body>
+
+    <div th:replace="fragments :: header"></div>
+
+    <h1>Songs:</h1>
+
+    <ul th:each="song : ${songs}">
+        <li th:text="${song.title}"></li>
+        <li th:text="${song.length}"></li>
+        <li th:text="${song.trackNumber}"></li>
+        <li th:text="${song.album.title}"></li>
+    </ul>
+
+<!--    <h1>Add a new song:</h1>-->
+<!--    <form action="/songs/new" method="post">-->
+<!--        <input name="album" />-->
+<!--        <input name="title" />-->
+<!--        <input type="number" name="length" />-->
+<!--        <input type="number" name="trackNumber" />-->
+<!--        <input type="submit" value="Add" />-->
+<!--    </form>-->
+
+</body>
+</html>
