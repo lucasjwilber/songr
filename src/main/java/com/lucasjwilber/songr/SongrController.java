@@ -30,14 +30,14 @@ public class SongrController {
     @GetMapping("/capitalize/{words}")
     public String capitalize(Model m, @PathVariable String words) {
         m.addAttribute("words", words.toUpperCase());
-        return "/capitalize";
+        return "capitalize";
     }
 
     @GetMapping("/albums")
     public String albums(Model m) {
         List<Album> albums = albumRepo.findAll();
         m.addAttribute("albums", albums);
-        return "/albums";
+        return "albums";
     }
 
     @PostMapping("/albums")
@@ -56,21 +56,15 @@ public class SongrController {
     public String getAllSongs(Model m, Song song) {
         List<Song> songs = songRepo.findAll();
         m.addAttribute("songs", songs);
-        return "/songs";
+        return "songs";
     }
 
     @GetMapping("/album/{id}")
     public String viewAlbum(@PathVariable Long id, Model m) {
-        Album album = (Album) albumRepo.getOne(id);
+        Album album = albumRepo.getOne(id);
+
         m.addAttribute("album", album);
-        m.addAttribute("id", id);
-
-        System.out.println("//////\n////////////\n////////////\n");
-
-        System.out.println(album.songs);
-
-        m.addAttribute("songs", album.songs);
-        return "/album";
+        return "album";
     }
 
     @PostMapping("/addSong/{id}")
@@ -78,22 +72,7 @@ public class SongrController {
         newSong.album = albumRepo.getOne(id);
         songRepo.save(newSong);
 
-//        Album album = albumRepo.getOne(id);
-//        album.songs.add(newSong);
-//        albumRepo.save(album);
-
         return new RedirectView("/albums");
     }
-//
-//    @PostMapping("/songs/new")
-//    public RedirectView newSong(Song song) {
-//        List<Song> songs = songRepo.findAll();
-//        songs.add(song);
-//        songRepo.saveAll(songs);
-//
-//        //refresh page
-//        return new RedirectView("/songs");
-//
-//    }
 
 }
