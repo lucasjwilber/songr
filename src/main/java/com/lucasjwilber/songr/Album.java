@@ -7,7 +7,7 @@ import java.util.List;
 public class Album {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public long id;
+    public Long id;
 
     @OneToMany(mappedBy = "album")
     public List<Song> songs;
@@ -27,6 +27,22 @@ public class Album {
         this.songCount = songCount;
         this.length = length;
         this.imageURL = "/images/" + imageURL;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
     public String getTitle() {

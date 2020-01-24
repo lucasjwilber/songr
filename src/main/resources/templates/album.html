@@ -16,17 +16,16 @@
         <h4>by <span th:text="${album.artist}"></span></h4>
         <p><span th:text="${album.songCount}"></span> songs!</p>
         <p><span th:text="${album.length}"></span> minutes of audio!</p>
+        <p>Track list:</p>
+        <ol th:each="track : ${album.songs}">
+            <li th:text="${track.title}">Song</li>
+        </ol>
     </div>
 
-    <form th:action="${'/albums/' + id}" method="post">
+    <form th:action="${'/albums/' + album.id}" method="post">
         <input type="hidden" value="delete" name="_method" />
         <input type="submit" name="deleteAlbum" value="Delete" />
     </form>
-
-    <h1>Songs on this album:</h1>
-    <ul th:each="song : ${songs}">
-        <li th:text="${song.title}"></li>
-    </ul>
 
     <h1>Add a new song to this album:</h1>
     <form th:action="${'/addSong/' + id}" method="post">

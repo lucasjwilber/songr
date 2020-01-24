@@ -12,7 +12,7 @@
 
     <button id="addAlbumButton" onClick="showForm()">Add an Album</button>
 
-    <div id="albumsContainer" th:each="album: ${albums}" >
+    <div id="albumsContainer" th:each="album : ${albums}" >
         <div class="album">
             <h2 th:text="${album.title}"></h2>
             <img th:src="${album.imageURL}" />
